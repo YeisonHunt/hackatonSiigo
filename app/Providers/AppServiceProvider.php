@@ -6,6 +6,7 @@ use App\Articles;
 use Elasticsearch\Client;
 use Elasticsearch\ClientBuilder;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,6 +15,11 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
+
+    public function boot(){
+        Schema::defaultStringLength(191);
+    }
+
     public function register()
     {
         $this->app->bind(Articles\ArticlesRepository::class, function ($app) {
